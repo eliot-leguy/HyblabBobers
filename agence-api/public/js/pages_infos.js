@@ -46,20 +46,32 @@ function expandMessage(messageElement, data) {
 
     const { titre, images, paragraphes } = repartitionChamps(fields, data, liste_choix);
 
+    const divtitle = document.createElement('div');
+    divtitle.classList.add('title');
+
     const title = document.createElement('h1');
     title.textContent = titre;
-    expandingElement.appendChild(title);
+    divtitle.appendChild(title);
+    expandingElement.appendChild(divtitle);
+
+    const divImages = document.createElement('div');
+    divImages.classList.add('images');
+    expandingElement.appendChild(divImages);
 
     images.forEach(image => {
         const img = document.createElement('p');
         img.src = image;
-        expandingElement.appendChild(img);
+        divImages.appendChild(img);
     });
+
+    const divParagraphes = document.createElement('div');
+    divParagraphes.classList.add('paragraphes');
+    expandingElement.appendChild(divParagraphes);
 
     paragraphes.forEach(paragraphe => {
         const text = document.createElement('p');
         text.textContent = paragraphe;
-        expandingElement.appendChild(text);
+        divParagraphes.appendChild(text);
     });
 
     expandingElement.querySelectorAll('*').forEach(element => element.style.display = 'none');
